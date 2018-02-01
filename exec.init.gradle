@@ -1,0 +1,31 @@
+rootProject {
+
+    plugins.matching({ it.class.name == "com.gradle.scan.plugin.BuildScanPlugin" }).all {
+        buildScan {
+            server = "https://e.grdev.net"
+        }
+    }
+
+	def execBefore = tasks.create("resetGitAndCleanBuildCache", Exec) {
+		commandLine = ["sh", "-c", "git reset --hard && rm -rf ../gradle-user-home/build-cache-*"]
+		doFirst {
+			println "> Executing ${commandLine}"
+		}
+	}
+	def execAfter = tasks.create("applyPatch", Exec) {
+		commandLine = "git revert --no-commit 0eef5b4b425ab42b9fa0fde1a3f36a37b92558f2".split(" ")
+		doFirst {
+			println "> Executing ${commandLine.join(" ")}"
+		}
+	}
+	allprojects {
+		tasks.all { task ->
+			if (task != execBefore) {
+				task.mustRunAfter execBefore
+			}
+			if (task != execAfter) {
+				execAfter.mustRunAfter task
+			}
+		}
+	}
+}

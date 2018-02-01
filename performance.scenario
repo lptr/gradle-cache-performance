@@ -1,0 +1,21 @@
+cleanAssembleCached {
+  tasks = ["clean", "assemble"]
+  gradle-args = ["--build-cache"]
+}
+
+cleanAssembleCachedV2 {
+  tasks = ["clean", "assemble"]
+  gradle-args = ["--build-cache", "-Dorg.gradle.caching.version2=true"]
+}
+
+revertCommit {
+	versions = ["4.5", "/Users/lptr/Workspace/gradle/local-install"]
+  gradle-args = [
+    "--init-script", "../exec.init.gradle",
+    "--build-cache",
+    "-Dorg.gradle.caching.version2=true",
+  ]
+  cleanup-tasks = ["resetGitAndCleanBuildCache", "clean", "spring-security-web:test", "applyPatch"]
+  tasks = ["spring-security-web:test"]
+  warm-ups = 1
+}

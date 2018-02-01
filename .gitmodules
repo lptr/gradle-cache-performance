@@ -1,0 +1,6 @@
+[submodule "spring-security"]
+	path = spring-security
+	url = git@github.com:lptr/spring-security.git
+[submodule "gradle-profiler"]
+	path = gradle-profiler
+	url = git@github.com:gradle/gradle-profiler.git
