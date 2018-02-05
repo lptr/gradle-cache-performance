@@ -1,0 +1,7 @@
+rootProject {
+    plugins.matching({ it.class.name == "com.gradle.scan.plugin.BuildScanPlugin" }).all {
+        buildScan {
+            server = "https://e.grdev.net"
+        }
+    }
+}

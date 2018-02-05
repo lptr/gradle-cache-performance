@@ -1,9 +1,50 @@
-revertCommit {
-  gradle-args = [
-    "--init-script", "../exec.init.gradle",
-    "--build-cache",
-    "-Dorg.gradle.caching.version2=true",
-  ]
-  cleanup-tasks = ["resetGitAndCleanBuildCache", "clean", "spring-security-web:test", "applyPatch"]
-  tasks = ["spring-security-web:test"]
+// Apply a sigle commit's worth of change by reverting one of the recent commits, destroys build cache in-between runs
+// The goal here is to see how much time it takes to rebuild after a few ABI-affecting changes
+// Measures overhead of storing outputs of a few tasks in the local cache
+single-commit {
+    gradle-args = [
+        "--init-script", "../scans.gradle",
+        "--build-cache",
+        "-Dorg.gradle.caching.version2=true",
+    ]
+    clear-build-cache-before = CLEANUP
+    git-revert = ["3b882ed", "a1c85e9"]
+    cleanup-tasks = ["clean", "sanityCheck"]
+    tasks = ["sanityCheck"]
+}
+
+// Emulate switching between branches with the cache enabled
+// Measures how long it takes to load multiple tasks from cache
+switch-branch-no-cache {
+    gradle-args = [
+        "--init-script", "../scans.gradle",
+    ]
+    git-revert = ["1a13d84...3b882ed"]
+    cleanup-tasks = ["clean", "sanityCheck"]
+    tasks = ["sanityCheck"]
+}
+
+switch-branch-cache {
+    gradle-args = [
+        "--init-script", "../scans.gradle",
+        "--build-cache",
+        "--scan",
+    ]
+    clear-build-cache-before = SCENARIO
+    git-revert = ["1a13d84...3b882ed"]
+    cleanup-tasks = ["clean", "sanityCheck"]
+    tasks = ["sanityCheck"]
+}
+
+switch-branch-merkle-cache {
+    gradle-args = [
+        "--init-script", "../scans.gradle",
+        "--build-cache",
+        "--scan",
+        "-Dorg.gradle.caching.version2=true",
+    ]
+    clear-build-cache-before = SCENARIO
+    git-revert = ["1a13d84...3b882ed"]
+    cleanup-tasks = ["clean", "sanityCheck"]
+    tasks = ["sanityCheck"]
 }
