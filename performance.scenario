@@ -19,7 +19,10 @@ switch-branch-no-cache {
     gradle-args = [
         "--init-script", "../scans.gradle",
     ]
-    git-revert = ["1a13d84...3b882ed"]
+    git-checkout = {
+        cleanup = "a0470b39d3df"
+        build = "bf544030dc2f"
+    }
     cleanup-tasks = ["clean", "sanityCheck"]
     tasks = ["sanityCheck"]
 }
@@ -31,7 +34,10 @@ switch-branch-cache {
         "--scan",
     ]
     clear-build-cache-before = SCENARIO
-    git-revert = ["1a13d84...3b882ed"]
+    git-checkout = {
+        cleanup = "a0470b39d3df"
+        build = "bf544030dc2f"
+    }
     cleanup-tasks = ["clean", "sanityCheck"]
     tasks = ["sanityCheck"]
 }
@@ -44,7 +50,10 @@ switch-branch-merkle-cache {
         "-Dorg.gradle.caching.version2=true",
     ]
     clear-build-cache-before = SCENARIO
-    git-revert = ["1a13d84...3b882ed"]
+    git-checkout = {
+        cleanup = "a0470b39d3df"
+        build = "bf544030dc2f"
+    }
     cleanup-tasks = ["clean", "sanityCheck"]
     tasks = ["sanityCheck"]
 }
