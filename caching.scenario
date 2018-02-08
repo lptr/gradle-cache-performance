@@ -32,13 +32,28 @@ branch-no-cache {
     tasks = ["sanityCheck"]
 }
 
-branch-with-cache {
+branch-load-from-cache {
     gradle-args = [
         "--init-script", "../scans.gradle",
         "--build-cache",
         "-Dorg.gradle.caching.version2=true",
     ]
     clear-build-cache-before = SCENARIO
+    git-checkout = {
+        cleanup = "926d3e4"
+        build = "6e840aa"
+    }
+    cleanup-tasks = ["clean", "sanityCheck"]
+    tasks = ["sanityCheck"]
+}
+
+branch-store-in-cache {
+    gradle-args = [
+        "--init-script", "../scans.gradle",
+        "--build-cache",
+        "-Dorg.gradle.caching.version2=true",
+    ]
+    clear-build-cache-before = CLEANUP
     git-checkout = {
         cleanup = "926d3e4"
         build = "6e840aa"
