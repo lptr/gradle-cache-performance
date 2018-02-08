@@ -1,0 +1,21 @@
+store-all-in-cache {
+    gradle-args = [
+        "--init-script", "../scans.gradle",
+        "--build-cache",
+        "-Dorg.gradle.caching.version2=true",
+    ]
+    clear-build-cache-before = BUILD
+    cleanup-tasks = ["clean"]
+    tasks = ["sanityCheck"]
+}
+
+load-all-from-cache {
+    gradle-args = [
+        "--init-script", "../scans.gradle",
+        "--build-cache",
+        "-Dorg.gradle.caching.version2=true",
+    ]
+    clear-build-cache-before = SCENARIO
+    cleanup-tasks = ["clean"]
+    tasks = ["sanityCheck"]
+}

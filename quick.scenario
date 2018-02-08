@@ -1,0 +1,18 @@
+switch-branch-merkle-cache {
+    run-using = cli
+    gradle-args = [
+        "--init-script", "../scans.gradle",
+        "--build-cache",
+        "--scan",
+        "-Dorg.gradle.caching.version2=true",
+        "--no-parallel",
+        "-Dorg.gradle.debug=false",
+    ]
+    clear-build-cache-before = SCENARIO
+    git-checkout = {
+        cleanup = "a0470b39d3df"
+        build = "bf544030dc2f"
+    }
+    cleanup-tasks = ["clean", "platformBase:jar"]
+    tasks = ["platformBase:jar"]
+}
