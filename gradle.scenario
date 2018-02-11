@@ -5,6 +5,7 @@ store-all-in-cache {
         "-Dorg.gradle.caching.version2=true",
     ]
     clear-build-cache-before = BUILD
+    show-build-cache-size = true
     cleanup-tasks = ["clean"]
     tasks = ["sanityCheck"]
 }
@@ -16,6 +17,7 @@ load-all-from-cache {
         "-Dorg.gradle.caching.version2=true",
     ]
     clear-build-cache-before = SCENARIO
+    show-build-cache-size = true
     cleanup-tasks = ["clean"]
     tasks = ["sanityCheck"]
 }
@@ -27,6 +29,7 @@ load-branch-from-cache {
         "-Dorg.gradle.caching.version2=true",
     ]
     clear-build-cache-before = SCENARIO
+    show-build-cache-size = true
     git-checkout = {
         cleanup = "926d3e4"
         build = "6e840aa"
@@ -42,6 +45,7 @@ store-branch-in-cache {
         "-Dorg.gradle.caching.version2=true",
     ]
     clear-build-cache-before = CLEANUP
+    show-build-cache-size = true
     git-checkout = {
         cleanup = "926d3e4"
         build = "6e840aa"
