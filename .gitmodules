@@ -4,3 +4,6 @@
 [submodule "gradle"]
 	path = gradle
 	url = git@github.com:gradle/gradle.git
+[submodule "new-pipe-android"]
+	path = new-pipe-android
+	url = https://github.com/TeamNewPipe/NewPipe
