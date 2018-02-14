@@ -1,42 +1,48 @@
 load-branch-from-cache {
+    versions = ["4.6-20180212002345+0000", "../local-install"]
     gradle-args = [
         "--init-script", "../scans.gradle",
+        "--scan",
         "--build-cache",
         "-Dorg.gradle.caching.version2=true",
     ]
     clear-build-cache-before = SCENARIO
     show-build-cache-size = true
     git-checkout = {
-        cleanup = "e883126"
-        build = "2773f5f"
+        cleanup = "71ee604"
+        build = "6e8593a"
     }
     cleanup-tasks = ["clean", "assembleDebug"]
     tasks = ["assembleDebug"]
 }
 
 store-branch-in-cache {
+    versions = ["4.6-20180212002345+0000", "../local-install"]
     gradle-args = [
         "--init-script", "../scans.gradle",
+        "--scan",
         "--build-cache",
         "-Dorg.gradle.caching.version2=true",
     ]
     clear-build-cache-before = CLEANUP
     show-build-cache-size = true
     git-checkout = {
-        cleanup = "e883126"
-        build = "2773f5f"
+        cleanup = "71ee604"
+        build = "6e8593a"
     }
     cleanup-tasks = ["clean", "assembleDebug"]
     tasks = ["assembleDebug"]
 }
 
 build-branch-no-cache {
+    versions = ["4.6-20180212002345+0000"]
     gradle-args = [
         "--init-script", "../scans.gradle",
+        "--scan",
     ]
     git-checkout = {
-        cleanup = "e883126"
-        build = "2773f5f"
+        cleanup = "71ee604"
+        build = "6e8593a"
     }
     cleanup-tasks = ["clean", "assembleDebug"]
     tasks = ["assembleDebug"]

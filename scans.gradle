@@ -3,5 +3,17 @@ rootProject {
         buildScan {
             server = "https://e.grdev.net"
         }
+
+        def scenario = System.getProperty("org.gradle.profiler.scenario")
+        def type = System.getProperty("org.gradle.profiler.type")
+        def step = System.getProperty("org.gradle.profiler.step")
+        def number = System.getProperty("org.gradle.profiler.number")
+        if (scenario) {
+            buildScan.tag "gradle-profiler"
+            buildScan.value "org.gradle.profiler.scenario", scenario
+            buildScan.value "org.gradle.profiler.type", type
+            buildScan.value "org.gradle.profiler.step", step
+            buildScan.value "org.gradle.profiler.number", number
+        }
     }
 }
