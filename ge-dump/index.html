@@ -54,8 +54,8 @@
                 case "org.gradle.profiler.scenario":
                     this.scenario = value;
                     break;
-                case "org.gradle.profiler.type":
-                    this.type = value;
+                case "org.gradle.profiler.phase":
+                    this.phase = value;
                     break;
                 case "org.gradle.profiler.step":
                     this.step = value;
@@ -114,7 +114,7 @@
             }
 
             var scenario = this.scenario;
-            var type = this.type;
+            var phase = this.phase;
             var number = this.number;
             var step = this.step;
             var tasks = this.tasks;
@@ -124,7 +124,7 @@
             var packTime = sum(this.packEvents);
             var unpackTime = sum(this.unpackEvents)
             var gcTime = this.gcTime;
-            output.value += [scenario, type, number, step, tasks, buildScan, executionTime, taskExecutionTime, gcTime, packTime, unpackTime].join("\t") + "\n";
+            output.value += [scenario, phase, number, step, tasks, buildScan, executionTime, taskExecutionTime, gcTime, packTime, unpackTime].join("\t") + "\n";
             // console.log(`Build ${this.buildId} took ${taskExecutionTime} ms to execute tasks, ${packTime} ms to pack and ${unpackTime} ms to unpack, GC took ${this.gcTime} ms.`);
         }
     }
