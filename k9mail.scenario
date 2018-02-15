@@ -1,0 +1,10 @@
+include file("common.conf")
+
+defaults = {
+    git-checkout = {
+        cleanup = "6767f41"
+        build =   "ace7557"
+    }
+    cleanup-tasks = ["clean", "assembleDebug"]
+    tasks = ["assembleDebug"]
+}

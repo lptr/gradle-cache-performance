@@ -7,3 +7,6 @@
 [submodule "new-pipe-android"]
 	path = new-pipe-android
 	url = https://github.com/TeamNewPipe/NewPipe
+[submodule "k9mail"]
+	path = k9mail
+	url = https://github.com/k9mail/k-9/
