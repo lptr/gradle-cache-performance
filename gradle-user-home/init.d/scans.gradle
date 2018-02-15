@@ -3,6 +3,7 @@ rootProject {
         buildScan {
             server = "https://e.grdev.net"
         }
+        gradle.startParameter.buildScan = "true"
 
         def scenario = System.getProperty("org.gradle.profiler.scenario")
         def type = System.getProperty("org.gradle.profiler.type")

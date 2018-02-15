@@ -1,49 +1,45 @@
-load-branch-from-cache {
-    versions = ["4.6-20180212002345+0000", "../local-install"]
-    gradle-args = [
-        "--init-script", "../scans.gradle",
-        "--scan",
-        "--build-cache",
-        "-Dorg.gradle.caching.version2=true",
-    ]
+defaults = {
+    git-checkout = {
+        cleanup = "71ee604"
+        build = "6e8593a"
+    }
+    cleanup-tasks = ["clean", "assembleDebug"]
+    tasks = ["assembleDebug"]
+}
+
+default-scenarios = [
+    "load-branch-regular",
+    "load-branch-merkle",
+    "store-branch-regular",
+    "store-branch-merkle",
+    "build-branch-no-cache",
+]
+
+cached-regular = ${defaults} {
+    gradle-args = ["--build-cache"]
+    show-build-cache-size = true
+}
+
+cached-merkle = ${defaults} {
+    gradle-args = ["--build-cache", "-Dorg.gradle.caching.version2=true"]
+    show-build-cache-size = true
+}
+
+load-branch-regular = ${cached-regular} {
     clear-build-cache-before = SCENARIO
-    show-build-cache-size = true
-    git-checkout = {
-        cleanup = "71ee604"
-        build = "6e8593a"
-    }
-    cleanup-tasks = ["clean", "assembleDebug"]
-    tasks = ["assembleDebug"]
 }
 
-store-branch-in-cache {
-    versions = ["4.6-20180212002345+0000", "../local-install"]
-    gradle-args = [
-        "--init-script", "../scans.gradle",
-        "--scan",
-        "--build-cache",
-        "-Dorg.gradle.caching.version2=true",
-    ]
+load-branch-merkle = ${cached-merkle} {
+    clear-build-cache-before = SCENARIO
+}
+
+store-branch-regular = ${cached-regular} {
     clear-build-cache-before = CLEANUP
-    show-build-cache-size = true
-    git-checkout = {
-        cleanup = "71ee604"
-        build = "6e8593a"
-    }
-    cleanup-tasks = ["clean", "assembleDebug"]
-    tasks = ["assembleDebug"]
 }
 
-build-branch-no-cache {
-    versions = ["4.6-20180212002345+0000"]
-    gradle-args = [
-        "--init-script", "../scans.gradle",
-        "--scan",
-    ]
-    git-checkout = {
-        cleanup = "71ee604"
-        build = "6e8593a"
-    }
-    cleanup-tasks = ["clean", "assembleDebug"]
-    tasks = ["assembleDebug"]
+store-branch-merkle = ${cached-merkle} {
+    clear-build-cache-before = CLEANUP
+}
+
+build-branch-no-cache  = ${defaults} {
 }

@@ -4,4 +4,9 @@ build/
 /profile-out/
 /profile-out-*/
 
-/gradle-user-home/
+/gradle-user-home/build-scan-data/
+/gradle-user-home/caches/
+/gradle-user-home/daemon/
+/gradle-user-home/native/
+/gradle-user-home/workers/
+/gradle-user-home/wrapper/
