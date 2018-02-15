@@ -1,43 +1,10 @@
-load-branch-from-cache {
-    gradle-args = [
-        "--init-script", "../scans.gradle",
-        "--build-cache",
-        "-Dorg.gradle.caching.version2=true",
-    ]
-    clear-build-cache-before = SCENARIO
-    show-build-cache-size = true
-    git-checkout = {
-        cleanup = "926d3e4"
-        build = "6e840aa"
-    }
-    cleanup-tasks = ["clean", "sanityCheck"]
-    tasks = ["sanityCheck"]
-}
+include file("common.conf")
 
-store-branch-in-cache {
-    gradle-args = [
-        "--init-script", "../scans.gradle",
-        "--build-cache",
-        "-Dorg.gradle.caching.version2=true",
-    ]
-    clear-build-cache-before = CLEANUP
-    show-build-cache-size = true
+defaults = {
     git-checkout = {
         cleanup = "926d3e4"
-        build = "6e840aa"
+        build =   "6e840aa"
     }
-    cleanup-tasks = ["clean", "sanityCheck"]
-    tasks = ["sanityCheck"]
-}
-
-build-branch-no-cache {
-    gradle-args = [
-        "--init-script", "../scans.gradle",
-    ]
-    git-checkout = {
-        cleanup = "926d3e4"
-        build = "6e840aa"
-    }
-    cleanup-tasks = ["clean", "sanityCheck"]
-    tasks = ["sanityCheck"]
+    cleanup-tasks = ["clean", "assembleDebug"]
+    tasks = ["assembleDebug"]
 }
