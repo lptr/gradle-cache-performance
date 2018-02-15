@@ -6,13 +6,13 @@ rootProject {
         gradle.startParameter.buildScan = "true"
 
         def scenario = System.getProperty("org.gradle.profiler.scenario")
-        def type = System.getProperty("org.gradle.profiler.type")
+        def phase = System.getProperty("org.gradle.profiler.phase")
         def step = System.getProperty("org.gradle.profiler.step")
         def number = System.getProperty("org.gradle.profiler.number")
         if (scenario) {
             buildScan.tag "gradle-profiler"
             buildScan.value "org.gradle.profiler.scenario", scenario
-            buildScan.value "org.gradle.profiler.type", type
+            buildScan.value "org.gradle.profiler.phase", phase
             buildScan.value "org.gradle.profiler.step", step
             buildScan.value "org.gradle.profiler.number", number
         }
