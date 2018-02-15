@@ -7,3 +7,6 @@
 [submodule "new-pipe-android"]
 	path = new-pipe-android
 	url = https://github.com/TeamNewPipe/NewPipe
+[submodule "shuttle"]
+	path = shuttle
+	url = https://github.com/timusus/Shuttle
