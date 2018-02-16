@@ -5,6 +5,6 @@ defaults = {
         cleanup = "926d3e4"
         build =   "6e840aa"
     }
-    cleanup-tasks = ["clean", "assembleDebug"]
-    tasks = ["assembleDebug"]
+    cleanup-tasks = ["clean", "sanityCheck"]
+    tasks = ["sanityCheck"]
 }

@@ -10,3 +10,5 @@ build/
 /gradle-user-home/native/
 /gradle-user-home/workers/
 /gradle-user-home/wrapper/
+
+/local.properties
